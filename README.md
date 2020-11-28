@@ -24,7 +24,7 @@ Inspect the CSVs and sketch out an ERD of the tables using QuickDBD
 ### Data Engineering
 * Use the information to create a table schema for each of the six CSV files. Remember to specify data types, primary keys, foreign keys, and other constraints.
 * Import each CSV file into the corresponding SQL table.
-
+```
 -- Data Engineering --
 -- Drop Tables if Existing
 DROP TABLE IF EXISTS Department CASCADE;
@@ -108,13 +108,16 @@ REFERENCES "Department" ("dept_no");
 
 ALTER TABLE "dept_manager" ADD CONSTRAINT "fk_dept_manager_emp_no" FOREIGN KEY("emp_no")
 REFERENCES "employees" ("emp_no");
+```
+### Data Analysis
+Once there is a complete database, do the following:
 
 --Data Analysis
 --Once you have a complete database, do the following:
 
 
 --List the following details of each employee: employee number, last name, first name, sex, and salary.
-
+```
 SELECT employees.emp_no AS "Employee Number"
 		,employees.last_name AS "Last Name"
 		,employees.first_name AS "First name"
@@ -122,8 +125,9 @@ SELECT employees.emp_no AS "Employee Number"
 		,salaries.salary AS "Salary"
 		
 FROM employees JOIN salaries ON employees.emp_no = salaries.emp_no;
-
+```
 --List first name, last name, and hire date for employees who were hired in 1986.
+```
 SELECT	employees.last_name AS "Last Name"
 		,employees.first_name AS "First Name"
 		,employees.hire_date AS "Hire Date"
@@ -131,9 +135,9 @@ SELECT	employees.last_name AS "Last Name"
 FROM employees
 
 WHERE employees.hire_date BETWEEN '01/01/1986' AND '12/31/1986';		
-
+```
 --List the manager of each department with the following information: department number, department name, the manager's employee number, last name, first name.
-
+```
 SELECT department.dept_no AS "Department Number"
 		,department.dept_name AS "Department Name"
 		,employees.emp_no AS "Employee Number"
@@ -143,11 +147,11 @@ SELECT department.dept_no AS "Department Number"
 FROM department JOIN dept_manager ON department.dept_no = dept_manager.dept_no
 
 JOIN employees ON dept_manager.emp_no = employees.emp_no;
-
+```
 
 
 --List the department of each employee with the following information: employee number, last name, first name, and department name.
-
+```
 SELECT employees.emp_no AS "Employee Number"
 		,employees.last_name AS "Employee Last Name"
 		,employees.first_name AS "Employee Fisrt Name"
@@ -155,16 +159,17 @@ SELECT employees.emp_no AS "Employee Number"
 		
 FROM employees JOIN dept_emp  ON employees.emp_no = dept_emp.emp_no 
 JOIN department ON   dept_emp.dept_no = department.dept_no ;
-
+```
 --List first name, last name, and sex for employees whose first name is "Hercules" and last names begin with "B."
-
+```
 SELECT last_name AS "Last Name"
 		,first_name AS "First name"
 		,sex AS " Gender"
 FROM employees
 WHERE first_name = 'Hercules' AND last_name LIKE 'B%';
-		
+```		
 --List all employees in the Sales department, including their employee number, last name, first name, and department name.	
+```
 SELECT emp_no AS "Employee Number"
 		,last_name AS "Last Name"
 		,first_name AS "FIRST Name"
@@ -179,8 +184,9 @@ SELECT emp_no AS "Employee Number"
 				WHERE dept_name = 'Sales'
 		)
 );
+```
 --List all employees in the Sales and Development departments, including their employee number, last name, first name, and department name.
-
+```
 SELECT employees.emp_no AS "Employee Number"
 		,employees.last_name AS "Last Name"
 		,employees.first_name AS "First Name" 
@@ -189,13 +195,13 @@ SELECT employees.emp_no AS "Employee Number"
 FROM employees JOIN dept_emp ON employees.emp_no = dept_emp.emp_no 
 JOIN department ON  dept_emp.dept_no = department.dept_no 	
 WHERE dept_name = 'Sales' OR dept_name ='Development';
-
+```
 --In descending order, list the frequency count of employee last names, i.e., how many employees share each last name.
-
+```
 SELECT last_name AS "Last Name", COUNT(last_name) AS "Frequency"
 FROM employees
 GROUP BY last_name
 ORDER BY
 COUNT(last_name) DESC;
+```
 
-### Data Analysis
