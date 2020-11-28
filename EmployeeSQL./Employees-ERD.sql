@@ -1,7 +1,4 @@
-﻿-- Exported from QuickDBD: https://www.quickdatabasediagrams.com/
--- NOTE! If you have used non-SQL datatypes in your design, you will have to change these here.
-
-
+﻿
 CREATE TABLE "Department" (
     "dept_no" varchar(255)   NOT NULL,
     "dept_name" varchar(255)   NOT NULL,
@@ -71,5 +68,5 @@ ALTER TABLE "dep_manager" ADD CONSTRAINT "fk_dep_manager_dept_no" FOREIGN KEY("d
 REFERENCES "Department" ("dept_no");
 
 ALTER TABLE "dep_manager" ADD CONSTRAINT "fk_dep_manager_emp_no" FOREIGN KEY("emp_no")
-REFERENCES "employees" ("");
+REFERENCES "employees" ("emp_no");
 
