@@ -97,7 +97,6 @@ SELECT employees.emp_no AS "Employee Number"
 FROM employees JOIN salaries ON employees.emp_no = salaries.emp_no;
 
 --List first name, last name, and hire date for employees who were hired in 1986.
-,to_char(employees.hire_date , 'MM/DD/YYYY') AS "Hire_Date"
 SELECT	employees.last_name AS "Last Name"
 		,employees.first_name AS "First Name"
 		,employees.hire_date AS "Hire Date"
@@ -116,7 +115,7 @@ SELECT department.dept_no AS "Department Number"
 		
 FROM department JOIN dept_manager ON department.dept_no = dept_manager.dept_no
 
-	join employees ON dept_manager.emp_no = employees.emp_no;
+JOIN employees ON dept_manager.emp_no = employees.emp_no;
 
 
 
@@ -156,26 +155,21 @@ SELECT emp_no AS "Employee Number"
 );
 --List all employees in the Sales and Development departments, including their employee number, last name, first name, and department name.
 
-SELECT emp_no AS "Employee Number"
-		,last_name AS "Last Name"
-		,first_name AS "First Name"
-		--,'Sales'AS "Department Name" 
-		--,'Developement' AS 
-		FROM employees
-		WHERE emp_no IN(	
-			SELECT emp_no
-			FROM dept_emp
-			WHERE dept_no IN( 
-				SELECT dept_no 
-						,dept_name AS "Department Name"
-				FROM department
-				WHERE dept_name = 'Sales' OR dept_name ='Development'
-		)
-);
+SELECT employees.emp_no AS "Employee Number"
+		,employees.last_name AS "Last Name"
+		,employees.first_name AS "First Name" 
+		,department.dept_name AS "Department Name"
+		
+FROM employees JOIN dept_emp ON employees.emp_no = dept_emp.emp_no 
+JOIN department ON  dept_emp.dept_no = department.dept_no 	
+WHERE dept_name = 'Sales' OR dept_name ='Development';
 
 --In descending order, list the frequency count of employee last names, i.e., how many employees share each last name.
 
-
-
+SELECT last_name, COUNT(last_name) AS "Frequency"
+FROM employees
+GROUP BY last_name
+ORDER BY
+COUNT(last_name) DESC;
 
 
