@@ -96,9 +96,6 @@ SELECT employees.emp_no AS "Employee Number"
 		
 FROM employees JOIN salaries ON employees.emp_no = salaries.emp_no;
 
-
-
-
 --List first name, last name, and hire date for employees who were hired in 1986.
 ,to_char(employees.hire_date , 'MM/DD/YYYY') AS "Hire_Date"
 SELECT	employees.last_name AS "Last Name"
