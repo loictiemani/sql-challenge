@@ -133,13 +133,14 @@ JOIN department ON   dept_emp.dept_no = department.dept_no ;
 
 --List first name, last name, and sex for employees whose first name is "Hercules" and last names begin with "B."
 
-SELECT employees.last_name AS "Last Name"
-		,employees.first_name AS "First name"
-		,employees.sex AS " Gender"
+SELECT last_name AS "Last Name"
+		,first_name AS "First name"
+		,sex AS " Gender"
 FROM employees
-WHERE employees.first_name = 'Hercules' AND employees.last_name LIKE 'B%'
+WHERE first_name = 'Hercules' AND last_name LIKE 'B%'
 		
 --List all employees in the Sales department, including their employee number, last name, first name, and department name.
+
 --List all employees in the Sales and Development departments, including their employee number, last name, first name, and department name.
 --In descending order, list the frequency count of employee last names, i.e., how many employees share each last name.
 
