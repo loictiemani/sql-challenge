@@ -137,15 +137,42 @@ SELECT last_name AS "Last Name"
 		,first_name AS "First name"
 		,sex AS " Gender"
 FROM employees
-WHERE first_name = 'Hercules' AND last_name LIKE 'B%'
+WHERE first_name = 'Hercules' AND last_name LIKE 'B%';
 		
---List all employees in the Sales department, including their employee number, last name, first name, and department name.
-SELECT employee.emp_no AS "Employee Number"
-		,employees.last_name AS "Employee Last Name"
-		,employees.first_name AS "Employee Fisrt Name"
-		,department.dept_name AS "Department Name"
-FROM 		
+--List all employees in the Sales department, including their employee number, last name, first name, and department name.	
+SELECT emp_no AS "Employee Number"
+		,last_name AS "Last Name"
+		,first_name AS "FIRST Name"
+		,'Sales'AS "Department Name" 
+		FROM employees
+		WHERE emp_no IN(	
+			SELECT emp_no
+			FROM dept_emp
+			WHERE dept_no IN( 
+				SELECT dept_no 
+				FROM department
+				WHERE dept_name = 'Sales'
+		)
+);
 --List all employees in the Sales and Development departments, including their employee number, last name, first name, and department name.
+
+SELECT emp_no AS "Employee Number"
+		,last_name AS "Last Name"
+		,first_name AS "First Name"
+		--,'Sales'AS "Department Name" 
+		--,'Developement' AS 
+		FROM employees
+		WHERE emp_no IN(	
+			SELECT emp_no
+			FROM dept_emp
+			WHERE dept_no IN( 
+				SELECT dept_no 
+						,dept_name AS "Department Name"
+				FROM department
+				WHERE dept_name = 'Sales' OR dept_name ='Development'
+		)
+);
+
 --In descending order, list the frequency count of employee last names, i.e., how many employees share each last name.
 
 
