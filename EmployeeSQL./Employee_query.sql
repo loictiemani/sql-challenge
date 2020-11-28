@@ -116,14 +116,27 @@ SELECT department.dept_no AS "Department Number"
 		,employees.emp_no AS "Employee Number"
 		,employees.last_name AS "Last Name"
 		,employees.first_name AS "First Name"
+		
+FROM department JOIN dept_manager ON department.dept_no = dept_manager.dept_no
 
-FROM department JOIN dept_manager ON "Department Number" = dept_manager.dept_no
-	join employees E on DM.emp_no = E.emp_no;
+	join employees ON dept_manager.emp_no = employees.emp_no;
 
 
 
 --List the department of each employee with the following information: employee number, last name, first name, and department name.
+
+SELECT employees.emp_no AS "Employee Number"
+		,employees.last_name AS "Employee Last Name"
+		,employees.first_name AS "Employee Fisrt Name"
+		,department.dept_name AS "Department Name"
+
+		
+FROM employees JOIN dept_emp  ON employees.emp_no = dept_emp.emp_no 
+JOIN department ON   dept_emp.dept_no = department.dept_no ;
+
 --List first name, last name, and sex for employees whose first name is "Hercules" and last names begin with "B."
+
+SELECT 
 --List all employees in the Sales department, including their employee number, last name, first name, and department name.
 --List all employees in the Sales and Development departments, including their employee number, last name, first name, and department name.
 --In descending order, list the frequency count of employee last names, i.e., how many employees share each last name.
