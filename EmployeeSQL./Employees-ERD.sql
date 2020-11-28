@@ -2,7 +2,7 @@
 -- NOTE! If you have used non-SQL datatypes in your design, you will have to change these here.
 
 
-CREATE TABLE "Department" (
+CREATE TABLE "department" (
     "dept_no" varchar(20)   NOT NULL,
     "dept_name" varchar(255)   NOT NULL,
     CONSTRAINT "pk_Department" PRIMARY KEY (
