@@ -17,6 +17,6 @@ Design the tables to hold data in the CSVs, import the CSVs into a SQL database,
 
 ### Data Modeling
 Inspect the CSVs and sketch out an ERD of the tables using QuickDBD
-![alt text]https://github.com/loictiems/sql-challenge/blob/main/EmployeeSQL./Employee-ERD.png)
+![](https://github.com/loictiems/sql-challenge/blob/main/EmployeeSQL./Employee-ERD.png)
 
 ### Data Analysis
