@@ -1,4 +1,4 @@
-﻿-- Data Engineering --
+-- Data Engineering --
 -- Drop Tables if Existing
 DROP TABLE IF EXISTS Department CASCADE;
 DROP TABLE IF EXISTS dept_emp CASCADE;
